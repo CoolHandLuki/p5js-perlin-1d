@@ -1,9 +1,9 @@
 let pixels = [];
-let y;
+let yoff = 0;
+let offset = 0.01;
 
 function setup() {
 	createCanvas(800, 800);	
-	y = width / 2;
 }
 
 function draw() {
@@ -22,8 +22,7 @@ function draw() {
 }
 
 function update() {
-	y = constrain(mouseY, 0, height);	
-	
+	let y = noise(yoff) * height;
 	let p = createVector(width / 2, y);
 	pixels.push(p);
 	
@@ -33,4 +32,5 @@ function update() {
 			pixels.splice(i, 1);
 		}
 	}
+	yoff += offset;
 }
